@@ -35,9 +35,4 @@ pipeline {
             steps {
                 script {
                     def resultat = env.SOMME
-                    echo "Le résultat est : ${resultat}"
-                }
-            }
-        }
-    }
-}
+                    echo
