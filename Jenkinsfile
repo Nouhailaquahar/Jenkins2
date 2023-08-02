@@ -20,6 +20,18 @@ pipeline {
                     
                     def somme = nombre1.toDouble() + nombre2.toDouble()
                     echo "La somme des deux nombres est : ${somme}"
+                    
+                    return [nombre1.toDouble(), nombre2.toDouble()]
+                }
+            }
+        }
+
+        stage('Multiplier les nombres') {
+            steps {
+                script {
+                    def nombres = env.NOMBRES // Récupérer les nombres saisis depuis l'étape précédente
+                    def produit = nombres[0] * nombres[1]
+                    echo "Le produit des deux nombres est : ${produit}"
                 }
             }
         }
