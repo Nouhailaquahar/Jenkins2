@@ -17,6 +17,9 @@ pipeline {
                     )
                     echo "Le premier nombre saisi est : ${nombre1}"
                     echo "Le deuxième nombre saisi est : ${nombre2}"
+                    
+                    def somme = nombre1.toDouble() + nombre2.toDouble()
+                    echo "La somme des deux nombres est : ${somme}"
                 }
             }
         }
