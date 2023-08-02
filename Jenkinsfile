@@ -12,7 +12,7 @@ pipeline {
                     )
                     def nombre2 = input(
                         id: 'userInput2',
-                        message: 'Veuillez saisir le deuxiÃ¨me nombre :',
+                        message: 'Veuillez saisir le deuxieme nombre :',
                         parameters: [string(defaultValue: '', description: 'DeuxiÃ¨me nombre saisi', name: 'NOMBRE2')]
                     )
                     echo "Le premier nombre saisi est : ${nombre1}"
