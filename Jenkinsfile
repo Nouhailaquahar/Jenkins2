@@ -15,24 +15,10 @@ pipeline {
                         message: 'Veuillez saisir le deuxième nombre :',
                         parameters: [string(defaultValue: '', description: 'Deuxième nombre saisi', name: 'NOMBRE2')]
                     )
-                    echo "Les nombres saisis sont : ${nombre1} et ${nombre2}"
-                    return [nombre1.toDouble(), nombre2.toDouble()]
+                    echo "Le premier nombre saisi est : ${nombre1}"
+                    echo "Le deuxième nombre saisi est : ${nombre2}"
                 }
             }
         }
-
-        stage('Calculer la somme') {
-            steps {
-                script {
-                    def somme = env.NOMBRE1 + env.NOMBRE2
-                    echo "La somme est : ${somme}"
-                    return somme
-                }
-            }
-        }
-
-        stage('Afficher le résultat') {
-            steps {
-                script {
-                    def resultat = env.SOMME
-                    echo
+    }
+}
