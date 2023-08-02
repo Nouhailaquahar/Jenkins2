@@ -18,10 +18,8 @@ pipeline {
                     echo "Le premier nombre saisi est : ${nombre1}"
                     echo "Le deuxième nombre saisi est : ${nombre2}"
                     
-                    def somme = nombre1.toDouble() + nombre2.toDouble()
-                    echo "La somme des deux nombres est : ${somme}"
-                    
-                    return [nombre1.toDouble(), nombre2.toDouble()]
+                    env.NOMBRE1 = nombre1.toDouble()
+                    env.NOMBRE2 = nombre2.toDouble()
                 }
             }
         }
@@ -29,8 +27,7 @@ pipeline {
         stage('Multiplier les nombres') {
             steps {
                 script {
-                    def nombres = env.BUILD_PARAMETERS.split(',')
-                    def produit = nombres[0].toDouble() * nombres[1].toDouble()
+                    def produit = env.NOMBRE1 * env.NOMBRE2
                     echo "Le produit des deux nombres est : ${produit}"
                 }
             }
