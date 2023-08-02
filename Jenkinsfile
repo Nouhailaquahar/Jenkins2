@@ -17,21 +17,11 @@ pipeline {
                     )
                     echo "Le premier nombre saisi est : ${nombre1}"
                     echo "Le deuxième nombre saisi est : ${nombre2}"
-
-                    script {
-                        // Utiliser writeFile pour stocker les nombres dans un fichier
-                        writeFile(file: 'nombres.txt', text: "${nombre1}\n${nombre2}")
-                    }
-                }
-            }
-        }
-
-        stage('Multiplier les nombres') {
-            steps {
-                script {
-                    // Lire les nombres à partir du fichier
-                    def nombres = readFile('nombres.txt').trim().split('\n')
-                    def produit = nombres[0].toDouble() * nombres[1].toDouble()
+                    
+                    def somme = nombre1.toDouble() + nombre2.toDouble()
+                    echo "La somme des deux nombres est : ${somme}"
+                    
+                    def produit = nombre1.toDouble() * nombre2.toDouble()
                     echo "Le produit des deux nombres est : ${produit}"
                 }
             }
