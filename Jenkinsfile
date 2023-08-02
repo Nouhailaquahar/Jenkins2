@@ -8,7 +8,7 @@ pipeline {
                     def nombreSaisi = input(
                         id: 'userInput',
                         message: 'Veuillez saisir un nombre :',
-                        parameters: [string(defaultValue: '', description: 'Nombre saisi par l\'utilisateur', name: 'NOMBRE_SAISI')]
+                        parameters: [string(defaultValue: '', description: 'Nombre saisi ', name: 'NOMBRE_SAISI')]
                     )
                     echo "Le nombre saisi est : ${nombreSaisi}"
                     return nombreSaisi.toDouble()
