@@ -2,26 +2,31 @@ pipeline {
     agent any
 
     stages {
-        stage('Saisir un nombre') {
+        stage('Saisir les nombres') {
             steps {
                 script {
-                    def nombreSaisi = input(
-                        id: 'userInput',
-                        message: 'Veuillez saisir un nombre :',
-                        parameters: [string(defaultValue: '', description: 'Nombre saisi ', name: 'NOMBRE_SAISI')]
+                    def nombre1 = input(
+                        id: 'userInput1',
+                        message: 'Veuillez saisir le premier nombre :',
+                        parameters: [string(defaultValue: '', description: 'Premier nombre saisi', name: 'NOMBRE1')]
                     )
-                    echo "Le nombre saisi est : ${nombreSaisi}"
-                    return nombreSaisi.toDouble()
+                    def nombre2 = input(
+                        id: 'userInput2',
+                        message: 'Veuillez saisir le deuxième nombre :',
+                        parameters: [string(defaultValue: '', description: 'Deuxième nombre saisi', name: 'NOMBRE2')]
+                    )
+                    echo "Les nombres saisis sont : ${nombre1} et ${nombre2}"
+                    return [nombre1.toDouble(), nombre2.toDouble()]
                 }
             }
         }
 
-        stage('Doubler le nombre') {
+        stage('Calculer la somme') {
             steps {
                 script {
-                    def nombreDouble = env.NOMBRE_SAISI.toDouble() * 2
-                    echo "Le nombre doublé est : ${nombreDouble}"
-                    return nombreDouble
+                    def somme = env.NOMBRE1 + env.NOMBRE2
+                    echo "La somme est : ${somme}"
+                    return somme
                 }
             }
         }
@@ -29,7 +34,7 @@ pipeline {
         stage('Afficher le résultat') {
             steps {
                 script {
-                    def resultat = env.NOMBRE_DOUBLE
+                    def resultat = env.SOMME
                     echo "Le résultat est : ${resultat}"
                 }
             }
