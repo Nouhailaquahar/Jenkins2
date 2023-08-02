@@ -29,8 +29,8 @@ pipeline {
         stage('Multiplier les nombres') {
             steps {
                 script {
-                    def nombres = env.NOMBRES // Récupérer les nombres saisis depuis l'étape précédente
-                    def produit = nombres[0] * nombres[1]
+                    def nombres = env.BUILD_PARAMETERS.split(',')
+                    def produit = nombres[0].toDouble() * nombres[1].toDouble()
                     echo "Le produit des deux nombres est : ${produit}"
                 }
             }
