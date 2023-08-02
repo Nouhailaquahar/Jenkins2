@@ -5,8 +5,8 @@ pipeline {
         stage('Saisir les nombres') {
             steps {
                 script {
-                    echo "=== ÉTAPE SAISIR LES NOMBRES ==="
                     def nombre1 = input(
+                        echo "=== ÉTAPE SAISIR LES NOMBRES ==="
                         id: 'userInput1',
                         message: 'Veuillez saisir le premier nombre :',
                         parameters: [string(defaultValue: '', description: 'Premier nombre saisi', name: 'NOMBRE1')]
@@ -18,16 +18,14 @@ pipeline {
                     )
                     echo "Le premier nombre saisi est : ${nombre1}"
                     echo "Le deuxième nombre saisi est : ${nombre2}"
-                }
-            }
-        }
-
-        stage('Calculer la somme') {
-            steps {
-                script {
-                    echo "=== ÉTAPE CALCULER LA SOMME ==="
-                    def somme = env.NOMBRE1 + env.NOMBRE2
+                    
+                    echo "=== AFFICHAGE DE LA SOMME ==="
+                    def somme = nombre1.toDouble() + nombre2.toDouble()
                     echo "La somme des deux nombres est : ${somme}"
+                    
+                    echo "=== AFFICHAGE DE LA MULTIPLICATION ==="
+                    def produit = nombre1.toDouble() * nombre2.toDouble()
+                    echo "Le produit des deux nombres est : ${produit}"
                 }
             }
         }
